@@ -5,48 +5,56 @@ var db = require('./models');
 
 var books_list = [
   {
+    id: 1,
     title: "To Kill a Mockingbird",
     author: "Harper Lee",
     image: "https://s3-us-west-2.amazonaws.com/sandboxapi/to_kill_a_mockingbird.jpg",
     releaseDate: "July 11, 1960"
   },
   {
+    id: 2,
     title: "The Great Gatsby",
     author: "F Scott Fitzgerald",
     image: "https://s3-us-west-2.amazonaws.com/sandboxapi/great_gatsby.jpg",
     releaseDate: "April 10, 1925"
   },
   {
+    id: 3,
     title: "Les Miserables",
     author: "Victor Hugo",
     image: "https://s3-us-west-2.amazonaws.com/sandboxapi/les_miserables.jpg",
     releaseDate: "Unknown 1862"
   },
   {
+    id: 4,
     title: "Around the World in 80 Days",
     author: "Jules Verne",
     image: "https://s3-us-west-2.amazonaws.com/sandboxapi/around_the_world_in_80_days.jpg",
     releaseDate: "January 30, 1873"
   },
   {
+    id: 5,
     title: "Lean In",
     author: "Sheryl Sandberg",
     image: "https://s3-us-west-2.amazonaws.com/sandboxapi/lean_in.jpg",
     releaseDate: "March 11, 2013"
   },
   {
+    id: 6,
     title: "The Four Hour Workweek",
     author: "Tim Ferriss",
     image: "https://s3-us-west-2.amazonaws.com/sandboxapi/four_hour_work_week.jpg",
     releaseDate: "April 1, 2007"
   },
   {
+    id: 7,
     title: "Of Mice and Men",
     author: "John Steinbeck",
     image: "https://s3-us-west-2.amazonaws.com/sandboxapi/of_mice_and_men.jpg",
     releaseDate: "Unknown 1937"
   },
   {
+    id: 8,
     title: "Romeo and Juliet",
     author: "William Shakespeare",
     image: "https://s3-us-west-2.amazonaws.com/sandboxapi/romeo_and_juliet.jpg",
