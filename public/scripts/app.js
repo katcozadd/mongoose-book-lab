@@ -12,19 +12,40 @@ $(document).ready(function(){
     error: handleError
   });
 
-  $('#newBookForm').on('submit', function(e) {
+  $('.create').on('click', function(e) {
     e.preventDefault();
     $.ajax({
       method: 'POST',
       url: '/api/books',
-      data: $(this).serialize(),
+      data: $('#newBookForm').serialize(),
       success: newBookSuccess,
       error: newBookError
     });
   });
 
+  $('.save').on('click', function(e) {
+    e.preventDefault();
+    $.ajax({
+      method: 'POST',
+      url: '/api/books',
+      data: $('#newBookForm').serialize(),
+      success: saveBookSuccess,
+      error: saveBookError
+    });
+  });
+
+  $booksList.on('click', '.updateBtn', function() {
+    console.log('clicked update button to,  /api/books/'+$(this).attr('data-id'));
+    $.ajax({
+      method: 'PUT',
+      url: '/api/books/'+$(this).attr('data-id'),
+      success: updateBookSuccess,
+      error: updateBookError
+    });
+  });
+
   $booksList.on('click', '.deleteBtn', function() {
-    console.log('clicked delete button to', '/api/books/'+$(this).attr('data-id'));
+    console.log('clicked delete button to,  /api/books/'+$(this).attr('data-id'));
     $.ajax({
       method: 'DELETE',
       url: '/api/books/'+$(this).attr('data-id'),
@@ -41,6 +62,7 @@ function getBookHtml(book) {
             <b>${book.title}</b>
             by ${book.author}
             <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>
+            <button type="button" name="button" class="updateBtn btn btn-warning pull-right" data-id=${book._id}>Update</button>
           </p>`;
 }
 
@@ -81,7 +103,56 @@ function newBookError() {
   console.log('newbook error!');
 }
 
+
+function updateBookSuccess(json) {
+  // var book = json;
+  // console.log(json);
+  var book = json;
+  console.log('update book', book);
+  // find the book with the correct ID and remove it from our allBooks array
+  $('input[name="title"]').val(book.title);
+  $('input[name="author"]').val(book.author);
+
+
+  // for(var index = 0; index < allBooks.length; index++) {
+  //   if(allBooks[index]._id === bookId) {
+  //     allBooks.splice(index, 1);
+  //     break;  // we found our book - no reason to keep searching (this is why we didn't use forEach)
+  //   }
+  // }
+  // render();
+}
+
+function updateBookError() {
+  console.log('updatebook error!');
+}
+
+
+function saveBookSuccess(json) {
+  var book = json;
+  console.log(json);
+  console.log('save book', book);
+
+
+
+  // find the book with the correct ID and remove it from our allBooks array
+  for(var index = 0; index < allBooks.length; index++) {
+    if(allBooks[index].title === book.title) {
+      allBooks.splice(index, 1);
+      break;  // we found our book - no reason to keep searching (this is why we didn't use forEach)
+    }
+  }
+  render();
+}
+
+function saveBookError() {
+  console.log('savebook error!');
+}
+
+
 function deleteBookSuccess(json) {
+  // var book = json;
+  // console.log(json);
   var bookId = json;
   console.log('delete book', bookId);
   // find the book with the correct ID and remove it from our allBooks array
