@@ -82,9 +82,7 @@ function newBookError() {
 }
 
 function deleteBookSuccess(json) {
-  var book = json;
-  console.log(json);
-  var bookId = book._id;
+  var bookId = json;
   console.log('delete book', bookId);
   // find the book with the correct ID and remove it from our allBooks array
   for(var index = 0; index < allBooks.length; index++) {
